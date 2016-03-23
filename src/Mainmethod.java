@@ -15,12 +15,18 @@ public class Mainmethod { // A program to store valuables and calculate their
 	}
 
 	public String newString() { // Handles input and serves to root out any
-								// errors such as null-values, etc.
+								// errors such as null-values, etc. will add
+								// more to this soon enough.
 		String theString = keyboard.nextLine();
 		return theString;
 	}
 
-	public boolean newBoolean(String answer) {
+	public boolean newBoolean(String answer) { // Unfinished, the idea was to
+												// make sure that the "isGold"
+												// Boolean has the possibility
+												// of being null, so that a
+												// re-entry can be done.
+
 		boolean theBoolean = false;
 		if (answer.equalsIgnoreCase("y")) {
 			theBoolean = true;
@@ -28,7 +34,8 @@ public class Mainmethod { // A program to store valuables and calculate their
 		return theBoolean;
 	}
 
-	public int newInt() {
+	public int newInt() { // Every int that's used for input will be a positive
+							// value
 		int theInt = keyboard.nextInt();
 		keyboard.nextLine();
 		if (theInt < 0) {
@@ -37,7 +44,7 @@ public class Mainmethod { // A program to store valuables and calculate their
 		return theInt;
 	}
 
-	public double newDouble() {
+	public double newDouble() { // Self-explanatory
 		double theDouble = keyboard.nextDouble();
 		keyboard.nextLine();
 		return theDouble;
@@ -46,14 +53,16 @@ public class Mainmethod { // A program to store valuables and calculate their
 	public void run() { // Everything the user chooses to do, goes through here.
 		boolean i = true;
 		while (i) {
-			displayText("ExecuteMenuProtocol");
+			displayText("ExecuteMenuProtocol"); // Calls upon the displayText to
+												// display the menu, saves space
+												// here.
 			String newString = newString();
 			switch (newString) {
 			case "1":
 				newValuable();
 				break;
 			case "2":
-				for (Valuable v : valuables) {
+				for (Valuable v : valuables) { // Lists all valuables
 					displayText(v.toString());
 				}
 				break;
@@ -72,13 +81,22 @@ public class Mainmethod { // A program to store valuables and calculate their
 	public void newValuable() {
 		int i = 0;
 		while (i == 0) {
-		displayText("Choose type of valuable!\n1. Jewellery\n2.Stocks\n3.Appliance");
-		String choice = newString();	
-			displayText("Name: ");
+			displayText("Choose type of valuable!\n1. Jewellery\n2.Stocks\n3.Appliance"); // There
+																							// are
+																							// 3
+																							// types
+																							// of
+																							// valuables
+			String choice = newString(); // The user makes a choice
+			displayText("Name: "); // Every valuable has a name, no matter which
+									// one we're talking about.
 			String name = newString();
 			switch (choice) {
 			case "1":
-				createJewellery(name);
+				createJewellery(name); // Each of the three valuables have
+										// different "constructors", so, I opted
+										// to make use of a switch-case type of
+										// solution.
 				break;
 			case "2":
 				createStock(name);
@@ -89,10 +107,21 @@ public class Mainmethod { // A program to store valuables and calculate their
 			default:
 				displayText("Command not recognized.");
 			}
-			displayText("Would you like to add another valuable? y/n");
+			displayText("Would you like to add another valuable? y/n"); // If
+																		// the
+																		// answer
+																		// is
+																		// anything
+																		// but
+																		// "n",
+																		// this
+																		// method
+																		// will
+																		// run
+																		// again.
 			String answer = newString();
-			if(answer.equalsIgnoreCase("n")){
-				i=-1;
+			if (answer.equalsIgnoreCase("n")) {
+				i = -1;
 			}
 		}
 	}
@@ -100,9 +129,14 @@ public class Mainmethod { // A program to store valuables and calculate their
 	public void createJewellery(String name) {
 		displayText("Is it made of gold? y/n");
 		String answer = newString();
-		boolean isGold = newBoolean(answer);
+		boolean isGold = newBoolean(answer); // Not happy with this solution,
+												// will revisit to make sure
+												// that no "wrong" answers can
+												// be given.
 		displayText("How many stones does it adorn?");
-		int stones = newInt();
+		int stones = newInt(); // The stones as well as whether it is gold or
+								// not, will affect the calculation of the items
+								// value later on.
 		Jewellery j = new Jewellery(stones, isGold, name);
 		valuables.add(j);
 	}
@@ -117,7 +151,9 @@ public class Mainmethod { // A program to store valuables and calculate their
 			} else {
 				displayText("You must enter a number from 1 to 10");
 				wear = newInt();
-			}
+			} // The instructions state that the "wear" ranges from 1-10, it
+				// serves a purpose when calculating the item's "value" later
+				// on.
 		}
 		displayText("What price did you originally buy it for?");
 		double cost = newDouble();
@@ -131,10 +167,14 @@ public class Mainmethod { // A program to store valuables and calculate their
 		displayText("What's the current course?");
 		double course = newDouble();
 		Stock s = new Stock(quantity, course, name);
-		valuables.add(s);
+		valuables.add(s); // Basically, the quantity * course will be the
+							// calculation later on.
 	}
 
-	public void hardcode() {
+	public void hardcode() { // Just some hardcoded test-valuables. So far, the
+								// program has practically 0 functionality; but
+								// once the value-calculation algorithms are in
+								// place... it's practically done!
 		Jewellery j = new Jewellery(12, true, "Steve");
 		valuables.add(j);
 		Stock s = new Stock(12, 12.8, "Astra Zenica");
@@ -145,7 +185,9 @@ public class Mainmethod { // A program to store valuables and calculate their
 
 	public static void main(String[] Args) { // The main method
 		System.out.println("A pointless Program. (For now)");
-		Mainmethod m = new Mainmethod();
+		Mainmethod m = new Mainmethod(); // This is simply to avoid having to
+											// use "static"; by calling upon the
+											// methods through the Mainmethod object "m"-.. you get it.
 		m.hardcode();
 		m.run();
 		m.keyboard.close();
