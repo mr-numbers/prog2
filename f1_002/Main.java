@@ -62,6 +62,7 @@ public class Main {
 		// test
 		String hej = stringInput();
 		output(hej);
+		
 	}
 
 	public void displayAll() {
