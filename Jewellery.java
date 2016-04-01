@@ -14,5 +14,13 @@ public class Jewellery extends Valuable {
 	public int getStones() {
 		return stones;
 	}
+	@Override
+	void calculateValue() {
+		
+	}
+	@Override
+	public String toString() {
+		return null;
+	}
 
 }

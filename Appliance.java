@@ -22,4 +22,17 @@ public class Appliance extends Valuable{
 		return wear;
 	}
 
+	@Override
+	void calculateValue() {
+		double wear = getWear();
+		double cost = getCost();
+		double value = ((wear/10)*cost);
+		this.setValue(value);
+	}
+	@Override
+	public String toString(){
+		calculateValue();
+		return getWear()+ " : "+getCost()+" : "+getValue();
+	}
+
 }

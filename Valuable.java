@@ -1,5 +1,5 @@
 package f1_002;
-import java.util.ArrayList;
+
 abstract class Valuable {
 	private String name;
 	private double value;
@@ -13,11 +13,10 @@ abstract class Valuable {
 		return value;
 	}
 	protected void setValue(double value) {
-		this.value = value;
+		this.value = (value*1.25); //Moms
 	}
-	public void calculateValue(ArrayList<Valuable> v){
-		
-	}
+	abstract void calculateValue();
+	public abstract String toString();
 	
 
 }

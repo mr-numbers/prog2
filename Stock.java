@@ -20,5 +20,12 @@ public class Stock extends Valuable{
 	public void setStocks(int stocks) {
 		this.stocks = stocks;
 	}
+	@Override
+	void calculateValue() {
+	}
+	@Override
+	public String toString() {
+		return null;
+	}
 
 }
