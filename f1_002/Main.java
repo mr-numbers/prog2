@@ -22,7 +22,7 @@ public class Main {
 				System.out.println("Empty string - invalid");
 			}
 		} while (invalid);
-		
+
 		return theString;
 	}
 
@@ -35,10 +35,11 @@ public class Main {
 	public void menu() {
 		System.out.println("main menu\n\n1. Add valuable\n2. Display all\n3. Quit");
 	}
-	
-	public void output(String text){
+
+	public void output(String text) {
 		System.out.println(text);
 	}
+
 	public void run() {
 		int i = 0;
 		while (i < 1) {
@@ -59,10 +60,27 @@ public class Main {
 	}
 
 	public void createValuable() {
-		// test
-		String hej = stringInput();
-		output(hej);
-		
+		output("What type of valuable will you be adding?\n1. Appliance\n2. Stocks\n3. Jewellery\n");
+		int i = intInput();
+		boolean keepAdding = false;
+		while(keepAdding){
+		switch (i) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
+		output("Add more? y/n");
+		String answer = stringInput();
+		if(answer.equalsIgnoreCase("y")){
+			keepAdding=true;
+		}
+		}
+
 	}
 
 	public void displayAll() {
