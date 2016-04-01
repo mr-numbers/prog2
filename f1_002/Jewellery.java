@@ -25,11 +25,12 @@ public class Jewellery extends Valuable {
 			value=700;
 		}
 		value=value+(stones*500);
-		this.setValue(value);
+		setValue(value);
 		
 	}
 	@Override
 	public String toString() {
+		calculateValue();
 		return "Name: "+getName()+ " | stones: "+getStones()+" | isGold: "+isGold()+" | value: "+getValue();
 	}
 

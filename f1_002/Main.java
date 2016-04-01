@@ -43,19 +43,19 @@ public class Main {
 		valuables.add(new Jewellery("Gold necklace", true, 39));
 		valuables.add(new Jewellery("Gold medallion", true, 57));
 		valuables.add(new Jewellery("Brass bracelet", false, 12));
-		
-		for(Valuable v : valuables){
-			if(v instanceof Appliance){
-				output("Appliance: "+v.toString());
+		for (Valuable v : valuables) {
+			if (v instanceof Appliance) {
+				v.calculateValue();
+				output("Appliance: " + v.toString());
 			}
-			if(v instanceof Jewellery){
-				output("Jewellery: "+v.toString());
+			if (v instanceof Jewellery) {
+				output("Jewellery: " + v.toString());
 			}
-			if(v instanceof Stock){
-				output("Stock: "+v.toString());
+			if (v instanceof Stock) {
+				output("Stock: " + v.toString());
 			}
 		}
-		
+
 	}
 
 	public static void main(String[] args) {

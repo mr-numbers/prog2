@@ -2,7 +2,7 @@ package f1_002;
 
 abstract class Valuable {
 	private String name;
-	private double value;
+	protected double value;
 	public Valuable(String name){
 		this.name=name;
 	}

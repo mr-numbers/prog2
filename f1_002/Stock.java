@@ -23,10 +23,11 @@ public class Stock extends Valuable{
 	@Override
 	void calculateValue() {
 		double value = (getCourse()*getStocks());
-		this.setValue(value);
+		setValue(value);
 	}
 	@Override
 	public String toString() {
+		calculateValue();
 		return "Name: "+getName()+ " | stocks: "+getStocks()+" | course: "+getCourse()+" | value: "+getValue();
 	}
 

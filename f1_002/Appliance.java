@@ -27,11 +27,10 @@ public class Appliance extends Valuable{
 		double wear = getWear();
 		double cost = getCost();
 		double value = ((wear/10)*cost);
-		this.setValue(value);
+		setValue(value);
 	}
 	@Override
 	public String toString(){
-		calculateValue();
 		return "Name: "+getName()+ " | cost: "+getCost()+" | wear: "+getWear()+" | Value: "+getValue(); 
 	}
 
