@@ -7,7 +7,7 @@ public class Main {
 	Scanner keyboard = new Scanner(System.in);
 	ArrayList<Valuable> valuables = new ArrayList<>();
 
-	public String stringInput() {
+	public String newString() {
 		String theString = null;
 		boolean invalid = false;
 		do {
@@ -26,10 +26,15 @@ public class Main {
 		return theString;
 	}
 
-	public int intInput() {
+	public int newInt() {
 		int i = keyboard.nextInt();
 		keyboard.nextLine();
 		return i;
+	}
+	public double newDouble() {
+		double d = keyboard.nextDouble();
+		keyboard.nextLine();
+		return d;
 	}
 
 	public void menu() {
@@ -61,21 +66,42 @@ public class Main {
 
 	public void createValuable() {
 		output("What type of valuable will you be adding?\n1. Appliance\n2. Stocks\n3. Jewellery\n");
-		int i = intInput();
+		int i = newInt();
 		boolean keepAdding = false;
 		while(keepAdding){
+			output("Name: ");
+			String name = newString();
 		switch (i) {
-		case 1:
+		case 1:			
+			output("Is \""+name+"\" made of gold? y/n");
+			boolean isGold=false;
+			String answer = newString();
+			if(answer.equalsIgnoreCase("y")){
+				isGold=true;
+			}
+			output("\nAnd how many gems does it sport?");
+			int stones = newInt();
+			valuables.add(new Jewellery (name, isGold, stones));
 			break;
 		case 2:
+			output("From 1-10, how would you rate the wear of \""+name+"\", where 1 is garbage and 10 pristine shape?");
+			int wear = newInt();
+			output("\nAnd what did you originally buy it for?");
+			double cost = newDouble();
+			valuables.add(new Appliance (name, cost, wear));
 			break;
 		case 3:
+			output("How many stocks in \""+name+"\" would you like to add?");
+			int stocks = newInt();
+			output("\nWhat is the current course?");
+			double course = newDouble();
+			valuables.add(new Stock (name, stocks, course));
 			break;
 		default:
 			break;
 		}
 		output("Add more? y/n");
-		String answer = stringInput();
+		String answer = newString();
 		if(answer.equalsIgnoreCase("y")){
 			keepAdding=true;
 		}
