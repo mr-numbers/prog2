@@ -49,7 +49,7 @@ public class Main {
 		int i = 0;
 		while (i < 1) {
 			menu();
-			int choice = keyboard.nextInt();
+			int choice = newInt();
 			switch (choice) {
 			case 1:
 				createValuable();
@@ -58,16 +58,16 @@ public class Main {
 				displayAll();
 				break;
 			case 3:
-				i = 0;
+				i = 1;
 			}
 		}
 
 	}
 
 	public void createValuable() {
-		output("What type of valuable will you be adding?\n1. Appliance\n2. Stocks\n3. Jewellery\n");
+		output("What type of valuable will you be adding?\n1. Jewellery\n2. Appliance\n3. Stocks\n");
 		int i = newInt();
-		boolean keepAdding = false;
+		boolean keepAdding = true;
 		while(keepAdding){
 			output("Name: ");
 			String name = newString();
@@ -102,8 +102,8 @@ public class Main {
 		}
 		output("Add more? y/n");
 		String answer = newString();
-		if(answer.equalsIgnoreCase("y")){
-			keepAdding=true;
+		if(answer.equalsIgnoreCase("n")){
+			keepAdding=false;
 		}
 		}
 
