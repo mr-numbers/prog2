@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Main {
 	Scanner keyboard = new Scanner(System.in);
 	ArrayList<Valuable> valuables = new ArrayList<>();
-
+	
 	public String newString() {
 		String theString = null;
 		boolean invalid = false;
@@ -132,22 +132,22 @@ public class Main {
 	}
 
 	public void createSampleData() {
-		valuables.add(new Appliance("Shitty ass TV", 1200, 2));
-		valuables.add(new Appliance("Another shitty ass TV", 2500, 7));
-		valuables.add(new Stock("Astra Zenica", 200, 5.43));
-		valuables.add(new Stock("Telia", 125, 4.2));
-		valuables.add(new Stock("CSS", 2000, 1.27));
-		valuables.add(new Jewellery("Gold necklace", true, 39));
-		valuables.add(new Jewellery("Gold medallion", true, 57));
-		valuables.add(new Jewellery("Brass bracelet", false, 12));
+		Swing.valuablesList.add(new Appliance("Shitty ass TV", 1200, 2));
+		Swing.valuablesList.add(new Appliance("Another shitty ass TV", 2500, 7));
+		Swing.valuablesList.add(new Stock("Astra Zenica", 200, 5.43));
+		Swing.valuablesList.add(new Stock("Telia", 125, 4.2));
+		Swing.valuablesList.add(new Stock("CSS", 2000, 1.27));
+		Swing.valuablesList.add(new Jewellery("Gold necklace", true, 39));
+		Swing.valuablesList.add(new Jewellery("Gold medallion", true, 57));
+		Swing.valuablesList.add(new Jewellery("Brass bracelet", false, 12));
 	}
 
 
 	public static void main(String[] args) {
 		Main program = new Main();
+		program.createSampleData();
 		Swing window = new Swing();
 		
-		program.createSampleData();
 		program.runGUI();
 	//	program.run();
 	}

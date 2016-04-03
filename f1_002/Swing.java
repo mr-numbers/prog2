@@ -6,15 +6,17 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Swing extends JFrame {
-	public ArrayList<Valuable>valuablesList = new ArrayList<>();
+	/**
+	 * 
+	 */
+
+	public static ArrayList<Valuable> valuablesList = new ArrayList<>();
 
 	private JTextArea display = new JTextArea();
 	private JRadioButton name, worth;
 
-	private JTextField fält;
 	private JLabel newValuable;
 	private JLabel sort;
-	private int value = 0;
 	private JButton showButton;
 	private JButton stockMarketCrashButton;
 	private JScrollPane scrollP;
@@ -66,43 +68,61 @@ public class Swing extends JFrame {
 		setVisible(true);
 	}
 
-	class BoxListener implements ActionListener {  //This + the form class are all capable of handling each type of new valuable's creation process; and more importantly
-		//It's also quite possible to add more types of valuables later! Simply add another if-set!
+	class BoxListener implements ActionListener { // This + the form class are
+													// all capable of handling
+													// each type of new
+													// valuable's creation
+													// process; and more
+													// importantly
+		// It's also quite possible to add more types of valuables later! Simply
+		// add another if-set!
 		public void actionPerformed(ActionEvent ave) {
-			try{
-			String selected = boxen.getSelectedItem().toString();
-			if (selected.equalsIgnoreCase("Stock")) {
-				Form f = new Form(0);
-				int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
-				if (svar != JOptionPane.OK_OPTION){
-				    return;
+			try {
+				String selected = boxen.getSelectedItem().toString();
+				if (selected.equalsIgnoreCase("Stock")) {
+					Form f = new Form(0);
+					int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
+					if (svar != JOptionPane.OK_OPTION) {
+						return;
+					}
+					String name = f.getName();
+					int stocks = f.getIntField();
+					double course = f.getDoubleField();
+					valuablesList.add(new Stock(name, stocks, course));
+				} else if (selected.equalsIgnoreCase("Appliance")) {
+					boolean b;
+					do {
+						b = false;
+						Form f = new Form(1);
+						int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
+						if (svar != JOptionPane.OK_OPTION) {
+							return;
+						}
+						String name = f.getName();
+						int wear = f.getIntField();
+						double cost = f.getDoubleField();
+						if (wear > 10 || wear < 1) {
+							JOptionPane.showMessageDialog(Swing.this, "Wear must be a value from 1-10", "Wrong entry",
+									JOptionPane.ERROR_MESSAGE);
+							b = true;
+						}
+						if (b == false) {
+							valuablesList.add(new Appliance(name, cost, wear));
+						}
+					} while (b);
+
+				} else if (selected.equalsIgnoreCase("Jewellery")) {
+					Form f = new Form(2);
+					int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
+					if (svar != JOptionPane.OK_OPTION) {
+						return;
+					}
+					String name = f.getName();
+					int stones = f.getIntField();
+					boolean isGold = f.getGold();
+					valuablesList.add(new Jewellery(name, isGold, stones));
 				}
-				String name = f.getName();
-				int stocks = f.getIntField();
-				double course = f.getDoubleField();
-			}
-			else if (selected.equalsIgnoreCase("Appliance")) {
-				Form f = new Form(1);
-				int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
-				if (svar != JOptionPane.OK_OPTION){
-				    return;
-				}
-				String name = f.getName();
-				int wear = f.getIntField();
-				double cost = f.getDoubleField();
-			}
-			else if (selected.equalsIgnoreCase("Jewellery")) {
-				Form f = new Form(2);
-				int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
-				if (svar != JOptionPane.OK_OPTION){
-				    return;
-				}
-				String name = f.getName();
-				int stones = f.getIntField();
-				boolean isGold = f.getGold();
-				valuablesList.add(new Jewellery (name, isGold, stones));
-			}
-			}catch(NumberFormatException e){
+			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(Swing.this, "Invalid entry");
 			}
 		}
@@ -110,6 +130,10 @@ public class Swing extends JFrame {
 
 	class showListener implements ActionListener {
 		public void actionPerformed(ActionEvent ave) {
+			display.setText("");
+			for(Valuable v : valuablesList){
+				display.append("\n"+v.toString());
+			}
 
 		}
 	}
