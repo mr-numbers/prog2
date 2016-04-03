@@ -67,21 +67,40 @@ public class Swing extends JFrame {
 	class BoxListener implements ActionListener {  //This + the form class are all capable of handling each type of new valuable's creation process; and more importantly
 		//It's also quite possible to add more types of valuables later! Simply add another if-set!
 		public void actionPerformed(ActionEvent ave) {
+			try{
 			String selected = boxen.getSelectedItem().toString();
 			if (selected.equalsIgnoreCase("Stock")) {
 				Form f = new Form(0);
-				JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
-
+				int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
+				if (svar != JOptionPane.OK_OPTION){
+				    return;
+				}
+				String name = f.getName();
+				int stocks = f.getIntField();
+				double course = f.getDoubleField();
 			}
 			else if (selected.equalsIgnoreCase("Appliance")) {
 				Form f = new Form(1);
-				JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
-
+				int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
+				if (svar != JOptionPane.OK_OPTION){
+				    return;
+				}
+				String name = f.getName();
+				int wear = f.getIntField();
+				double cost = f.getDoubleField();
 			}
 			else if (selected.equalsIgnoreCase("Jewellery")) {
 				Form f = new Form(2);
-				JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
-
+				int svar = JOptionPane.showConfirmDialog(null, f, "Indata", JOptionPane.OK_CANCEL_OPTION);
+				if (svar != JOptionPane.OK_OPTION){
+				    return;
+				}
+				String name = f.getName();
+				int stones = f.getIntField();
+				boolean isGold = f.getGold();
+			}
+			}catch(NumberFormatException e){
+				JOptionPane.showMessageDialog(Swing.this, "Invalid entry");
 			}
 		}
 	}
@@ -134,7 +153,7 @@ public class Swing extends JFrame {
 
 			}
 			else if(value==1){
-				row2.add(new JLabel("Wear: "));		
+				row2.add(new JLabel("Wear, from 1-10: "));		
 				row3.add(new JLabel("Original cost of item:  "));
 				row2.add(intField);
 				add(row2);
@@ -155,18 +174,18 @@ public class Swing extends JFrame {
 			
 		}
 
-		public String getName() {
+		public String getNameField() {
 			return nameField.getText();
 		}
 
-		public int getInt() {
+		public int getIntField() {
 			return Integer.parseInt(intField.getText());
 		}
 
-		public double getDouble() {
+		public double getDoubleField() {
 			return Double.parseDouble(doubleField.getText());
 		}
-		public boolean getBooealn(){
+		public boolean getGold(){
 			return isGold.isSelected();
 		}
 	}
