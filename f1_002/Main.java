@@ -1,6 +1,9 @@
 package f1_002;
 
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class Main {
@@ -62,6 +65,10 @@ public class Main {
 			}
 		}
 
+	}
+	public void runGUI(){
+		
+		
 	}
 
 	public void createValuable() {
@@ -135,9 +142,13 @@ public class Main {
 		valuables.add(new Jewellery("Brass bracelet", false, 12));
 	}
 
+
 	public static void main(String[] args) {
 		Main program = new Main();
+		Swing window = new Swing();
+		
 		program.createSampleData();
-		program.run();
+		program.runGUI();
+	//	program.run();
 	}
 }
