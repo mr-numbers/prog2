@@ -1,5 +1,5 @@
 package f1_002;
-
+//Carl Herkommer
 public class Appliance extends Valuable{
 	private double cost;
 	private int wear;
@@ -31,7 +31,8 @@ public class Appliance extends Valuable{
 	}
 	@Override
 	public String toString(){
-		return "Name: "+getName()+ " | cost: "+getCost()+" | wear: "+getWear()+" | Value: "+getValue(); 
+		calculateValue();
+		return "Name of Appliance: "+getName()+ " | cost price: "+getCost()+" | wear: "+getWear()+" | current value: "+getValue(); 
 	}
 
 }

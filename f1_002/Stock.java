@@ -1,5 +1,5 @@
 package f1_002;
-
+//Carl Herkommer
 public class Stock extends Valuable{
 	private double course;
 	private int stocks;
@@ -28,7 +28,7 @@ public class Stock extends Valuable{
 	@Override
 	public String toString() {
 		calculateValue();
-		return "Name: "+getName()+ " | stocks: "+getStocks()+" | course: "+getCourse()+" | value: "+getValue();
+		return "Stock name: "+getName()+ " | stocks: "+getStocks()+" | current course: "+getCourse()+" | current value: "+getValue();
 	}
 
 }

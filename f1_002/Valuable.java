@@ -1,5 +1,5 @@
 package f1_002;
-
+//Carl Herkommer
 abstract class Valuable {
 	private String name;
 	protected double value;

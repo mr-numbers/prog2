@@ -1,5 +1,5 @@
 package f1_002;
-
+//Carl Herkommer
 public class Jewellery extends Valuable {
 	private boolean isGold;
 	private int stones;
@@ -31,7 +31,7 @@ public class Jewellery extends Valuable {
 	@Override
 	public String toString() {
 		calculateValue();
-		return "Name: "+getName()+ " | stones: "+getStones()+" | isGold: "+isGold()+" | value: "+getValue();
+		return "Jewellery name: "+getName()+ " | stones: "+getStones()+" | isGold: "+isGold()+" | current value: "+getValue();
 	}
 
 }

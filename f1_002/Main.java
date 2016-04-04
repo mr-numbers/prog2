@@ -1,5 +1,5 @@
 package f1_002;
-
+//Carl Herkommer
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Main {
 	Scanner keyboard = new Scanner(System.in);
 	ArrayList<Valuable> valuables = new ArrayList<>();
-	
+	/*
 	public String newString() {
 		String theString = null;
 		boolean invalid = false;
@@ -129,8 +129,9 @@ public class Main {
 				output("Stock: " + v.toString());
 			}
 		}
-	}
-
+	}*/ 
+	//This is from when it was a console program.
+	
 	public void createSampleData() {
 		Swing.valuablesList.add(new Appliance("Shitty ass TV", 1200, 2));
 		Swing.valuablesList.add(new Appliance("Another shitty ass TV", 2500, 7));
@@ -147,8 +148,6 @@ public class Main {
 		Main program = new Main();
 		program.createSampleData();
 		Swing window = new Swing();
-		
-		program.runGUI();
 	//	program.run();
 	}
 }
