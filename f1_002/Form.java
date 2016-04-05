@@ -67,4 +67,5 @@ public class Form extends JPanel { // Tried to design it in such a way that it
 	public boolean getGold() {
 		return isGold.isSelected();
 	}
+	
 }

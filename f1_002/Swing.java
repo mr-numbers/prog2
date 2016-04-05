@@ -11,7 +11,6 @@ import java.util.Comparator;
 
 public class Swing extends JFrame {
 	public static ArrayList<Valuable> valuablesList = new ArrayList<>();
-	private int sortingMethod=-1;
 	private JTextArea display = new JTextArea();
 	private JRadioButton byName, byWorth;
 
@@ -71,21 +70,33 @@ public class Swing extends JFrame {
 
 	class BoxListener implements ActionListener {
 		public void actionPerformed(ActionEvent ave) {
+			boolean b=true;
+			do {
 			try {
 				String selected = boxen.getSelectedItem().toString();
 				if (selected.equalsIgnoreCase("Stock")) {
-					Form f = new Form(0);
-					int svar = JOptionPane.showConfirmDialog(null, f, "New Stock", JOptionPane.OK_CANCEL_OPTION);
-					if (svar != JOptionPane.OK_OPTION) {
-						return;
-					}
-					String name = f.getNameField();
-					int stocks = f.getIntField();
-					double course = f.getDoubleField();
-					valuablesList.add(new Stock(name, stocks, course));
+						b = false;
+						Form f = new Form(0);
+						int svar = JOptionPane.showConfirmDialog(null, f, "New Stock", JOptionPane.OK_CANCEL_OPTION);
+						if (svar != JOptionPane.OK_OPTION) {
+							return;
+						}
+						String name = f.getNameField();
+						int stocks = f.getIntField();
+						double course = f.getDoubleField();
+						String emptyCheck = String.valueOf(stocks);
+						String emptyCheck2 = String.valueOf(course);
+						if (name == null || name.length() == 0 || emptyCheck == null || emptyCheck == null
+								|| emptyCheck2 == null || emptyCheck2.length() == 0) {
+							JOptionPane.showMessageDialog(Swing.this, "Empty field", "Wrong entry",
+									JOptionPane.ERROR_MESSAGE);
+							b = true;
+						}
+						if (b == false) {
+							valuablesList.add(new Stock(name, stocks, course));
+						}
+
 				} else if (selected.equalsIgnoreCase("Appliance")) {
-					boolean b;
-					do {
 						b = false;
 						Form f = new Form(1);
 						int svar = JOptionPane.showConfirmDialog(null, f, "New Appliance",
@@ -101,35 +112,52 @@ public class Swing extends JFrame {
 									JOptionPane.ERROR_MESSAGE);
 							b = true;
 						}
+						String emptyCheck = String.valueOf(cost);
+						if (name == null || emptyCheck == null || name.length() == 0 || emptyCheck == null) {
+							JOptionPane.showMessageDialog(Swing.this, "Empty field", "Wrong entry",
+									JOptionPane.ERROR_MESSAGE);
+							b = true;
+						}
 						if (b == false) {
 							valuablesList.add(new Appliance(name, cost, wear));
 						}
-					} while (b);
 
 				} else if (selected.equalsIgnoreCase("Jewellery")) {
-					Form f = new Form(2);
-					int svar = JOptionPane.showConfirmDialog(null, f, "New Jewellery", JOptionPane.OK_CANCEL_OPTION);
-					if (svar != JOptionPane.OK_OPTION) {
-						return;
-					}
-					String name = f.getNameField();
-					int stones = f.getIntField();
-					boolean isGold = f.getGold();
-					valuablesList.add(new Jewellery(name, isGold, stones));
+						b = false;
+						Form f = new Form(2);
+						int svar = JOptionPane.showConfirmDialog(null, f, "New Jewellery",
+								JOptionPane.OK_CANCEL_OPTION);
+						if (svar != JOptionPane.OK_OPTION) {
+							return;
+						}
+						String name = f.getNameField();
+						int stones = f.getIntField();
+						boolean isGold = f.getGold();
+						String emptyCheck = String.valueOf(stones);
+						if (name == null || name.length() == 0 || emptyCheck == null || emptyCheck == null) {
+							JOptionPane.showMessageDialog(Swing.this, "Empty field", "Wrong entry",
+									JOptionPane.ERROR_MESSAGE);
+							b = true;
+						}
+						if(b==false){
+						valuablesList.add(new Jewellery(name, isGold, stones));
+						}
 				}
 			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(Swing.this, "Invalid entry");
+				JOptionPane.showMessageDialog(Swing.this, "Number format exception, broski");
+				b=true;
 			}
+			} while (b);
 		}
 	}
 
 	class showListener implements ActionListener {
 		public void actionPerformed(ActionEvent ave) {
 			display.setText("");
-			if(sortingMethod==1){
+			if (byName.isSelected()) {
 				Collections.sort(valuablesList, new NamnComparator());
 			}
-			if(sortingMethod==2){
+			else if(byWorth.isSelected()) {
 				Collections.sort(valuablesList, new WorthComparator());
 			}
 			for (Valuable v : valuablesList) {
@@ -153,34 +181,34 @@ public class Swing extends JFrame {
 		public void actionPerformed(ActionEvent ave) {
 			if (byName.isSelected()) {
 				byName.setEnabled(false);
-				byWorth.setSelected(false);		
-				byWorth.setEnabled(true);			
+				byWorth.setSelected(false);
+				byWorth.setEnabled(true);
 			}
-			sortingMethod=1;
 		}
 	}
+
 	class sortByWorthListener implements ActionListener {
 		public void actionPerformed(ActionEvent ave) {
 			if (byWorth.isSelected()) {
 				byWorth.setEnabled(false);
-				byName.setSelected(false);		
+				byName.setSelected(false);
 				byName.setEnabled(true);
 			}
-			sortingMethod=2;
 		}
-	}
-	class NamnComparator implements Comparator<Valuable>{
-		public int compare(Valuable v1, Valuable v2) {
-				return v1.getName().toLowerCase().compareTo(v2.getName().toLowerCase());
-		}
-		
-	}
-	class WorthComparator implements Comparator<Valuable>{
-		public int compare(Valuable v1, Valuable v2) {
-				return (int) (v2.getValue() - v1.getValue());
-		}
-		
 	}
 
+	class NamnComparator implements Comparator<Valuable> {
+		public int compare(Valuable v1, Valuable v2) {
+			return v1.getName().toLowerCase().compareTo(v2.getName().toLowerCase());
+		}
+
+	}
+
+	class WorthComparator implements Comparator<Valuable> {
+		public int compare(Valuable v1, Valuable v2) {
+			return (int) (v2.getValue() - v1.getValue());
+		}
+
+	}
 
 }
