@@ -31,7 +31,14 @@ public class Jewellery extends Valuable {
 	@Override
 	public String toString() {
 		calculateValue();
-		return "Jewellery name: "+getName()+ " | stones: "+getStones()+" | isGold: "+isGold()+" | current value: "+getValue();
+		String gold;
+		if(isGold()){
+			gold=" Gold ";
+		}
+		else{
+			gold=" Silver ";
+		}
+		return getName()+ " | stones: "+getStones()+" | "+gold+" | current value: "+getValue();
 	}
 
 }

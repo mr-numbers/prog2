@@ -28,7 +28,7 @@ public class Stock extends Valuable{
 	@Override
 	public String toString() {
 		calculateValue();
-		return "Stock name: "+getName()+ " | stocks: "+getStocks()+" | current course: "+getCourse()+" | current value: "+getValue();
+		return getName()+ " | stocks: "+getStocks()+" | current course: "+getCourse()+" | current value: "+getValue();
 	}
 
 }

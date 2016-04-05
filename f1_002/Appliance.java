@@ -32,7 +32,17 @@ public class Appliance extends Valuable{
 	@Override
 	public String toString(){
 		calculateValue();
-		return "Name of Appliance: "+getName()+ " | cost price: "+getCost()+" | wear: "+getWear()+" | current value: "+getValue(); 
+		return getName()+ " | original cost: "+getCost()+" | wear: "+getWear()+" | current value: "+getValue(); 
 	}
+	@Override
+	public int compareTo(Valuable other){
+		if(getValue()>other.getValue()){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+		}
+
 
 }

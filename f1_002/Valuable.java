@@ -1,6 +1,8 @@
 package f1_002;
 //Carl Herkommer
-abstract class Valuable {
+import java.util.Collections.*;
+import java.util.Comparator;
+abstract class Valuable implements Comparable<Valuable>{
 	private String name;
 	protected double value;
 	public Valuable(String name){
@@ -17,6 +19,23 @@ abstract class Valuable {
 	}
 	abstract void calculateValue();
 	public abstract String toString();
+	public int compareTo(Valuable other){
+		if(this.getValue()>other.getValue()){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+		}
+
+/*	public boolean equals(Object other){
+		if (other instanceof Valuable){
+		    Valuable p = (Valuable)other;
+		    return getName() == p.getName();
+		}
+		else
+		    return false;
+	    }*/
 	
 
 }
